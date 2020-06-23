@@ -76,6 +76,13 @@ class ApiController extends Controller
             'error_code' => $validHttpCode,
             'more_info' => 'Contact Administrator'
         ];
+        if (method_exists($e, 'errors')) {
+            $validHttpCode = 422;
+            unset($errorFormat['developer_message']);
+            $errorFormat['errors'] = $e->errors();
+            $errorFormat['status'] = $validHttpCode;
+            $errorFormat['error_code'] = $validHttpCode;
+        }
         return new JsonResponse($errorFormat, $validHttpCode);
     }
 
