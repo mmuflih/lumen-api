@@ -10,7 +10,7 @@ Custom from Lumen
 ## How to install
 - Clone this repository
 - User terminal or command line
-- Execute `cp .env.example .env
+- Execute `cp .env.example .env`
 - Edit database connection
    
         DB_HOST=127.0.0.1
@@ -26,11 +26,12 @@ Custom from Lumen
 
 ## How to run project
 
-    php -S 0.0.0.0:8080 -t public
+    php -S 0.0.0.0:8000 -t public
 
 ## Added Folders and files
 
 To reduce the number of line on `controller` in this project, bussines process is separated into `Readers` and `Handlers`.
+
 - `Handlers` is used to accomodate business process related to `changing` data into database.
 - `Readers` is used to accomodate business process related to `getting` data from database.
 - On `Core` felder also added some files:
@@ -40,15 +41,20 @@ To reduce the number of line on `controller` in this project, bussines process i
     - `HasPaginate.php` is trait class as Pagination Helper.
     - `PagedList.php` is helper class as custom response pagination from LengthAwarePaginator, this changed relate with return on the controller.
 - `ApiController.php` is a custom of the existing `Controller`, with added several helper methods to handle the standard response.
+```
+    - app
+      - Core
+        - Handlers (directory)
+        - Readers (directory)
+        - Handler.php
+        - HasPaginate.php
+        - PagedList.php
+        - Reader.php
+      - Http
+        - Controllers
+          - ApiController.php
+```
 
-      - app
-        - Core
-          - Handlers (directory)
-          - Readers (directory)
-          - Handler.php
-          - HasPaginate.php
-          - PagedList.php
-          - Reader.php
-        - Http
-          - Controllers
-            - ApiController.php
+## Added custom artisan command
+- `php artisan make:model` Create a new Eloquent model class
+- `php artisan jwt:secret` Set the JWTAuth secret key used to sign the tokens
