@@ -1,24 +1,54 @@
-# Lumen PHP Framework
+# Lumen RestFul
+Custom from Lumen
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+## Requirements
+- PHP latest version
+- MariaDB or MySQL latest version
+- git
+- composer
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+## How to install
+- Clone this repository
+- User terminal or command line
+- Execute `cp .env.example .env
+- Edit database connection
+   
+        DB_HOST=127.0.0.1
+        DB_PORT=3306
+        DB_DATABASE=database_name
+        DB_USERNAME=database_user
+        DB_PASSWORD=database_password
 
-## Official Documentation
+- Execute `composer install`
+- Execute `php artisan migrate`
+- Execute `php artisan db:seed`
+- Execute `php artisan jwt:secret`
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+## How to run project
 
-## Contributing
+    php -S 0.0.0.0:8080 -t public
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Added Folders and files
 
-## Security Vulnerabilities
+To reduce the number of line on `controller` in this project, bussines process is separated into `Readers` and `Handlers`.
+- `Handlers` is used to accomodate business process related to `changing` data into database.
+- `Readers` is used to accomodate business process related to `getting` data from database.
+- On `Core` felder also added some files:
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+    - `Handler.php` is interface class as the parent class of `Handler` classes.
+    - `Reader.php` is interface class as the parent class of `Reader` classes.
+    - `HasPaginate.php` is trait class as Pagination Helper.
+    - `PagedList.php` is helper class as custom response pagination from LengthAwarePaginator, this changed relate with return on the controller.
+- `ApiController.php` is a custom of the existing `Controller`, with added several helper methods to handle the standard response.
 
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+      - app
+        - Core
+          - Handlers (directory)
+          - Readers (directory)
+          - Handler.php
+          - HasPaginate.php
+          - PagedList.php
+          - Reader.php
+        - Http
+          - Controllers
+            - ApiController.php
