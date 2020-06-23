@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Api\ApiController;
 use App\User;
+use Carbon\Carbon;
 
 class AuthController extends ApiController
 {
@@ -81,10 +82,12 @@ class AuthController extends ApiController
      */
     protected function respondWithToken($token)
     {
+        $expires = auth()->factory()->getTTl() * 60;
         return [
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => $expires,
+            'expired_at' => Carbon::now()->addMinutes($expires)->timestamp,
         ];
     }
 }
