@@ -14,7 +14,7 @@ class RegisterAdmin extends Seeder
         \DB::table('users')->insert([
             'name' => 'Administrator',
             'email' => 'admin@app.com',
-            'password' => app('hash')->make('@admin'),
+            'password' => app('hash')->make('Secreet!'),
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
         ]);
