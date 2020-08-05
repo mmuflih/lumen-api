@@ -4,14 +4,14 @@
  * Date: 18.06.2017
  */
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Core\PagedList;
-use App\Http\Controllers\Controller;
+use Laravel\Lumen\Routing\Controller as BaseController;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class ApiController extends Controller
+class ApiController extends BaseController
 {
     public function responseData($data, $code = 200)
     {

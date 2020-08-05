@@ -14,7 +14,6 @@ use App\Core\Handlers\DeleteUserHandler;
 use App\Core\Handlers\EditUserHandler;
 use App\Core\Readers\GetUserReader;
 use App\Core\Readers\GetUsersReader;
-use App\Http\Controllers\Api\ApiController;
 use Illuminate\Http\Request;
 use Validator;
 

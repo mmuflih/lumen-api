@@ -9,8 +9,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Api\ApiController;
-use App\User;
 use Carbon\Carbon;
 
 class AuthController extends ApiController
